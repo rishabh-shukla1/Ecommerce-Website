@@ -169,8 +169,8 @@ app.post('/checkout/:user', async (req, res) => {
             line_items: lineItems,
             mode: 'payment',
             customer_email: userDetails.email,  // Add customer email here
-            success_url: 'http://localhost:8080/complete',  // Redirect to success page after successful payment
-            cancel_url: 'http://localhost:8080/cancel',  // Redirect to cancel page if payment is not completed
+            success_url: '/complete',  // Redirect to success page after successful payment
+            cancel_url: '/cancel',  // Redirect to cancel page if payment is not completed
         });
 
         
@@ -214,8 +214,8 @@ app.post('/checkout/:userId/:productId', async (req, res) => {
         line_items: lineItems,
         mode: 'payment',
         customer_email: userDetails.email,  // User email from the database
-        success_url: 'http://localhost:8080/complete',  // Redirect to success page
-        cancel_url: 'http://localhost:8080/cancel',  // Redirect to cancel page
+        success_url: '/complete',  // Redirect to success page
+        cancel_url: '/cancel',  // Redirect to cancel page
       });
   
       // Redirect to Stripe's checkout page
