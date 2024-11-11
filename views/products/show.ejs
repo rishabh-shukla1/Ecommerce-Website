@@ -1,0 +1,117 @@
+<% layout('layouts/boilerplate') %>
+
+<%- include('../partials/navbar') %>
+
+
+
+
+
+     <div class="row">
+      <%- include('../partials/flash') %>
+       
+        
+            <div class="col-lg-6 mt-3">  
+
+             
+
+              <!-- <div class="alert alert-success" role="alert">
+               <strong>
+                <%if(msg && msg.length){%>
+
+                  <%=msg%>
+
+                <%}%>
+               </strong>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> -->
+              
+                <div class="card shadow  mx-auto" style="width: 18rem;">  
+                    <img src="<%=foundELement.img%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h2 class="card-title"><%=foundELement.name%></h2>
+                      <h2 class="card-title"></h2>
+                      <h5>&#8377; <%=foundELement.price%></h5>
+                      <p class="card-text"><%=foundELement.desc%></p>
+                      <%if(currentUser && currentUser.role ==='seller'){%>
+                      <a href="/products/<%=foundELement._id%>/edit" class="btn btn-sm btn-light">Edit</a>
+                      <%}%>
+                      
+                      <form action="/user/<%=foundELement._id%>/add" method="POST"  class="d-inline-block">
+                        <button class="btn btn-sm btn-secondary mb-2 mx-auto">ADD TO CART</button>
+                      </form>
+                     <% if(currentUser && currentUser.role !=='seller'){%>
+                      <form action="/checkout/<%= user._id %>/<%= foundELement._id %>" method="POST">
+                        <button type="submit" class="btn  btn-sm btn-success mx-auto ">BUY</button>
+                      </form>
+                    <%}%>
+                      
+
+                    </div>
+                  </div>
+                
+            </div>
+
+            <div class="col-lg-6">
+                <h1 class="display-5">Leave a Review</h1>
+
+                <form action="/products/<%=foundELement._id%>/review" method="POST">
+                    <div class="mb-3">
+                        <fieldset class="starability-basic">
+                            <legend>Rating:</legend>
+                            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="rating" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="rating" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="rating" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="rating" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="rating" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                          </fieldset>   
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="cmt">Comment:</label>
+                       <textarea  class="form-control" row="3"type="text" name="comment" id="cmt">   </textarea> 
+                    </div>
+
+                    <button type="submit"  class="btn btn-sm btn-success">ADD REVIEW</button>
+                </form>
+
+
+                <div class="mt-3">
+
+                    <%for( let reviews of foundELement.reviews){%>
+
+                        <div class="card mb-3 ">
+                          <p class="card-title mt-3"> 
+                            <%if(reviews.createdAt){%>
+                             <%=reviews.createdAt.toDateString()%>
+                            <%}%></p>
+                            <div class="card-header">
+                                <p class="starability-result" data-rating="<%=reviews.rating%>">
+                                  Rated:<%=reviews.rating%>
+                                </p>
+                            </div>
+                            <div class="card-body">
+                              
+                              <p class="card-text">Comment:- <%=reviews.comment%></p>
+                              <a href="#" class="btn btn-sm btn-primary">Delete</a>
+                            </div>
+                            
+                          </div>
+
+                    <%}%>
+                    
+                </div>
+            </div>
+       
+       
+     </div>
+    
+    
+</body>
+</html>
