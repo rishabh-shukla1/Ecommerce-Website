@@ -1,7 +1,7 @@
-if(process.env.NODE_ENV !== 'production'){ // always on top
+
     require('dotenv').config();
 
-}
+
 
 
 // aquiring the server 
@@ -63,10 +63,10 @@ const Product = require('./models/Product');
 
 
 
- const dbURL=process.env.dbURL || 'mongodb://127.0.0.1:27017/shopping-app'
+ 
 
-mongoose.set('strictQuery','true');
-mongoose.connect(dbURL)  // it returns a promice which a
+mongoose.set('strictQuery','false');
+mongoose.connect(process.env.MONGODB_URL)  // it returns a promice which a
 .then(()=>{
     console.log("Database Connected Successfully")
 })
@@ -127,7 +127,6 @@ app.use((req,res,next)=>{
 
 
 passport.use(new LocalStrategy(User.authenticate()));
-
 // seeding data
 // seedDB()
 app.use(productRoutes); // so that incoming request ke lie path check kia ja sake
