@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate') %>
+
+<%- include('../partials/navbar') %>
+
+
+
+<!-- seller/products.ejs -->
+
+  
+    <div class="row">
+        <%- include('../partials/flash') %>
+        <% for (let item of products) { %>
+            <div class="col-lg-4 mt-3">
+                <!-- Card with product details -->
+                <div class="card shadow mx-auto" style="width: 18rem;">
+                    <img src="<%= item.img %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h2 class="card-title"><%= item.name %></h2>
+                        <h5>&#8377; <%= item.price %></h5>
+                        <p class="card-text"><%= item.desc %></p>
+                        <% if (item.reviews.length) { %>
+                            <p class="text-muted"><%= item.reviews.length %> reviews</p>
+                        <% } else { %>
+                            <p class="text-muted">No reviews</p>
+                        <% } %>
+                        <a href="/products/<%= item._id %>" class="btn btn-sm btn-info">View</a>
+
+                        <!-- Allow the seller to delete their product -->
+                        <% if (currentUser && currentUser.role === 'seller') { %>
+                            <form class="d-inline-block" action="/product/<%= item._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+
+

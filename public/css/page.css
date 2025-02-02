@@ -1,0 +1,102 @@
+/* Row setup */
+.row {
+  display: flex;
+  justify-content: center; /* Centers the column horizontally */
+  align-items: center; /* Vertically aligns the content */
+  min-height: 100vh; /* Ensures full viewport height */
+  padding: 20px; /* Adds padding around the content */
+  background-image: url('https://plus.unsplash.com/premium_photo-1661434758776-faf568a8a34f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNob3BwaW5nJTIwY2FydHxlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Heading styling */
+.row .col-md-6 h1 {
+  text-align: center; /* Centers the heading horizontally */
+  margin-bottom: 1.5rem; /* Adds space below the heading */
+  color: #333; /* Dark color for the heading */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  font-size: 2.8rem; /* Increases heading size for more impact */
+  font-weight: bold; /* Makes the heading bold */
+  text-transform: uppercase; /* Makes text uppercase */
+  letter-spacing: 3px; /* Adds more spacing between letters */
+  padding: 10px 0; /* Adds padding for better spacing */
+  border-bottom: 3px solid #80cbc4; /* Soft teal underline */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.row .col-md-6 h1:hover {
+  color: #4db6ac; /* Change color on hover for a dynamic effect */
+}
+
+/* Form container styling */
+.row .col-md-6 {
+  max-width: 600px; /* Limits the width of the form */
+  width: 100%;
+  padding: 40px; /* Increased padding for a more spacious layout */
+  background-color: rgba(240, 249, 244, 0.9); /* Slightly transparent light minty background */
+  border-radius: 12px; /* Rounded corners for the form */
+  border: 3px solid #80cbc4; /* Soft teal border around the form */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for better depth */
+  box-sizing: border-box; /* Prevents padding from affecting width */
+  overflow: hidden; /* Prevents any overflow */
+  margin: 20px; /* Adds space around the form */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for smooth transformation */
+}
+
+.row .col-md-6:hover {
+  transform: translateY(-5px); /* Elevates the form on hover */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+/* Button styling */
+button {
+  background-color: #80cbc4; /* Teal background */
+  color: white; /* White text color */
+  font-size: 1.2rem; /* Slightly larger button text for emphasis */
+  font-weight: bold; /* Bold button text */
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px; /* Rounded button corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth color and transform transition */
+}
+
+button:hover {
+  background-color: #4db6ac; /* Darker teal on hover */
+  transform: scale(1.05); /* Slightly increases the button size */
+}
+
+/* Additional styles for inputs */
+input[type="search"] {
+  padding: 12px 15px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid #80cbc4; /* Soft teal border for inputs */
+  margin-right: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+input[type="search"]:focus {
+  outline: none;
+  border-color: #4db6ac; /* Highlight border on focus */
+  box-shadow: 0 0 5px rgba(0, 128, 128, 0.3); /* Light teal glow */
+}
+
+/* Form input text styling */
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 12px 15px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid #80cbc4;
+  width: 100%;
+  margin-bottom: 1.5rem; /* Adds space between inputs */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  outline: none;
+  border-color: #4db6ac; /* Focus border color */
+  box-shadow: 0 0 5px rgba(0, 128, 128, 0.3); /* Light teal glow */
+}
