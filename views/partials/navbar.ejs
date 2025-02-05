@@ -1,39 +1,65 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Navbar Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" 
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <!-- Brand Logo -->
       <a class="navbar-brand text-white fs-4 fw-bold" href="#">Shopping Cart</a>
+
+      <!-- Left-Aligned Navigation Links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link text-white fs-5 active" aria-current="page" href="/products">Home</a>
         </li>
-        <% if(currentUser && currentUser.role === 'seller'){ %>
+        <% if (currentUser && currentUser.role === 'seller') { %>
           <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="/product/new">New</a>
+            <a class="nav-link text-white fs-5" href="/product/new">New</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fs-5" href="/seller/products" style="font-weight: bold; color: #ff9800; background-color: #333; border-radius: 5px; padding: 5px 10px;">Your Products</a>
+            <a class="nav-link text-white fs-5" href="/seller/products" 
+              style="font-weight: bold; color: #ff9800; background-color: #333; border-radius: 5px; padding: 5px 10px;">
+              Your Products
+            </a>
           </li>
         <% } %>
       </ul>
 
-      <!-- Centered Search Form -->
       <div class="d-flex justify-content-center flex-grow-1">
-        <form class="d-flex" role="search" action="/search" method="get">
-          <input class="form-control me-2 rounded-pill" type="search" name="q" placeholder="Search for products..." aria-label="Search" value="<%= query %>">
-          <button class="btn btn-outline-success rounded-pill" type="submit">Search</button>
+        <form class="d-flex position-relative" role="search" action="/search" method="get">
+          <div class="input-group">
+            <!-- Search Input Field -->
+            <input class="form-control rounded-pill pe-5" type="search" name="q" id="searchInput" 
+              placeholder="Search for products..." aria-label="Search" value="<%= query %>">
+      
+            <!-- Mic Icon Positioned Inside the Input Field -->
+            <button type="button" id="record" class="btn position-absolute end-0 top-50 translate-middle-y me-3 border-0 bg-transparent">
+              <i class="fa-solid fa-microphone text-secondary"></i>
+            </button>
+          </div>
+      
+          <!-- Search Button -->
+          <button class="btn btn-outline-success rounded-pill ms-2 py-1 px-3" type="submit">Search</button>
         </form>
       </div>
+      
+      
+      
+      
+      
+      
 
-      <div class="d-flex">
+      <!-- Right-Aligned User Section -->
+      <div class="d-flex align-items-center">
         <% if (!currentUser) { %>
           <a href="/login" class="btn btn-outline-light mx-2 fs-5 px-4 py-2 rounded-pill">LOGIN</a>
         <% } else { %>
-          <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="d-flex align-items-center">
             <!-- User Greeting -->
-            <a href="#" class="nav-link text-white fs-5 mx-2 font-weight-bold">Hello, <%= currentUser.username %></a>
+            <span class="text-white fs-5 mx-2 fw-bold">Hello, <%= currentUser.username %></span>
 
             <!-- Cart Icon with Item Count -->
             <a href="/user/cart" class="nav-link text-white fs-5 mx-2 d-flex align-items-center position-relative">
@@ -51,3 +77,26 @@
     </div>
   </div>
 </nav>
+
+<!-- JavaScript for Voice Search -->
+<script>
+  const recordBtn = document.getElementById("record");
+  const searchInput = document.getElementById("searchInput");
+
+  // Initialize SpeechRecognition API
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.continuous = false;
+  recognition.lang = "en-US";
+
+  recordBtn.addEventListener("click", () => {
+      recognition.start();
+  });
+
+  recognition.onresult = (event) => {
+      searchInput.value = event.results[0][0].transcript;  // Convert speech to text
+  };
+
+  recognition.onspeechend = () => {
+      recognition.stop();
+  };
+</script>
